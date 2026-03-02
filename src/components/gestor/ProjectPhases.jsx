@@ -29,13 +29,13 @@ export default function ProjectPhases() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-28 md:py-36 bg-white relative overflow-hidden">
+    <section className="pt-12 pb-28 md:pt-16 md:pb-36 bg-white relative overflow-hidden">
       <div ref={ref} className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-20"
+          className="text-center mb-10"
         >
           <span className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
             Metodologia

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Video, Headphones, Layers, Calendar, FileText, Lock } from "lucide-react";
+import GoldenCircles from "./GoldenCircles";
 
 const features = [
   { icon: Video, title: "Encontro estratégico semanal", desc: "60 minutos" },
@@ -16,8 +17,12 @@ export default function HowItWorks() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="como-funciona" className="py-28 md:py-36 bg-white relative">
-      <div ref={ref} className="max-w-5xl mx-auto px-6">
+    <section
+      id="como-funciona"
+      className="pt-28 pb-12 md:pt-36 md:pb-16 bg-white relative overflow-hidden"
+    >
+      <GoldenCircles />
+      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

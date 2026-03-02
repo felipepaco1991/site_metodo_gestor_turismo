@@ -2,13 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import GoldenCircles from "./GoldenCircles";
 
 export default function ProblemIntro() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="problema" className="py-28 md:py-40 bg-white relative overflow-hidden">
+    <section id="problema" className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <GoldenCircles />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/20 to-transparent" />
       
       <div ref={ref} className="max-w-4xl mx-auto px-6">

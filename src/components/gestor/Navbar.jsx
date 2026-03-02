@@ -10,6 +10,40 @@ const navLinks = [
   { label: "Quem Somos", href: "#quem-somos" },
 ];
 
+const desktopNavVariants = {
+  hidden: { opacity: 0, y: -12 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.2, staggerChildren: 0.08 },
+  },
+};
+
+const desktopItemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: "easeOut" },
+  },
+};
+
+const mobileMenuVariants = {
+  hidden: { opacity: 0, y: -20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.25, staggerChildren: 0.06, delayChildren: 0.04 },
+  },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
+};
+
+const mobileItemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: "easeOut" } },
+  exit: { opacity: 0, y: -6, transition: { duration: 0.18 } },
+};
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -46,41 +80,46 @@ export default function Navbar() {
             : "bg-[#1A2C47]/80 backdrop-blur-md border-b border-white/5"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-          <a
+        <div className="max-w-6xl mx-auto px-8 h-20 md:h-24 flex items-center justify-between">
+          <motion.a
             href="#"
             onClick={(e) => handleNavClick(e, "#")}
-            className="flex items-center gap-2"
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
+            className="flex items-center gap-1.5"
           >
-            <span className={`text-lg font-semibold tracking-tight transition-colors duration-300 ${
+            <span className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${
               scrolled ? "text-[#1A2C47]" : "text-white"
             }`}>
               G.E.S.T.O.R.
             </span>
-            <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors duration-300 ${
-              scrolled ? "text-[#D4AF37]" : "text-[#D4AF37]"
-            }`}>
+            <span className="text-sm font-semibold transition-colors duration-300 text-[#D4AF37]">
               ®
             </span>
-          </a>
+          </motion.a>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={desktopNavVariants}
+            className="hidden md:flex items-center gap-10"
+          >
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-sm font-light transition-colors duration-300 hover:text-[#D4AF37] ${
+                variants={desktopItemVariants}
+                className={`text-base font-light transition-colors duration-300 hover:text-[#D4AF37] ${
                   scrolled ? "text-gray-600" : "text-gray-200"
                 }`}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className={`md:hidden p-2 transition-colors duration-300 ${
@@ -92,26 +131,26 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            variants={mobileMenuVariants}
             className="fixed inset-0 z-40 bg-white pt-20"
           >
             <div className="flex flex-col items-center gap-8 pt-12">
               {navLinks.map((link) => (
-                <a
+                <motion.a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
+                  variants={mobileItemVariants}
                   className="text-xl font-light text-[#1B4332] hover:text-[#B8860B] transition-colors"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>
