@@ -57,7 +57,7 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-5">
           {supportItems.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -66,12 +66,14 @@ export default function HowItWorks() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.08 + index * 0.06 }}
-                className="rounded-[26px] border border-white/10 bg-white/5 p-6"
+                className="flex h-full flex-col rounded-[26px] border border-white/10 bg-white/5 p-6"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c89741]/18 bg-[#c89741]/10">
                   <Icon className="h-5 w-5 text-[#ddb97d]" />
                 </div>
-                <h3 className="mt-5 font-display text-3xl text-white">{item.title}</h3>
+                <h3 className="mt-5 font-display text-2xl leading-tight text-white">
+                  {item.title}
+                </h3>
                 <p className="mt-3 text-sm leading-7 text-white/66">{item.desc}</p>
               </motion.div>
             );

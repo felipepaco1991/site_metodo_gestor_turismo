@@ -52,7 +52,7 @@ export default function Navbar() {
             <img
               src="/logo-fabiana.png"
               alt="Fabiana Lima"
-              className="relative top-[6px] block h-24 w-auto object-contain md:top-[8px] md:h-28"
+              className="relative top-[6px] block h-24 w-auto object-contain md:top-[4px] md:h-16"
             />
           </a>
 
