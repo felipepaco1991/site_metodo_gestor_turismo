@@ -1,31 +1,25 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
+  AlertTriangle,
+  Calculator,
+  FileWarning,
+  Link2,
+  Scale,
+  Shuffle,
   TrendingDown,
   Users,
-  Shuffle,
-  AlertTriangle,
-  Eye,
-  HelpCircle,
-  Layers,
-  ShieldAlert,
-  Link2,
-  UserX
 } from "lucide-react";
 
 const painPoints = [
-  { icon: TrendingDown, text: "Vendem bem, mas não têm resultados" },
-  { icon: Users, text: "Dependem de pessoas, não de processo" },
-  { icon: Shuffle, text: "Tomam decisões no improviso" },
-  { icon: AlertTriangle, text: "Têm prejuízos ou margens muito baixas" },
-  { icon: ShieldAlert, text: "Assumem riscos financeiros sem perceber" },
-  { icon: Eye, text: "Não compreendem os prejuízos ocultos" },
-  { icon: HelpCircle, text: "Não sabem precificar com segurança" },
-  { icon: Layers, text: "Desorganização operacional" },
-  { icon: ShieldAlert, text: "Insegurança jurídica" },
-  { icon: Link2, text: "Dependência excessiva de operadoras" },
-  { icon: UserX, text: "Cancelamentos e conflitos com clientes" },
-  { icon: TrendingDown, text: "Crescimento sem previsibilidade" },
+  { icon: TrendingDown, text: "Vendem bem, mas não enxergam resultado financeiro consistente." },
+  { icon: Users, text: "Dependem demais de pessoas e pouco de processos próprios." },
+  { icon: Shuffle, text: "Tomam decisões no improviso e reagem tarde aos problemas." },
+  { icon: AlertTriangle, text: "Operam com margens baixas e riscos ocultos." },
+  { icon: FileWarning, text: "Carregam fragilidade documental e insegurança jurídica." },
+  { icon: Calculator, text: "Precificam grupos sem margem de segurança real." },
+  { icon: Link2, text: "Dependem em excesso de terceiros, operadoras e atalhos operacionais." },
+  { icon: Scale, text: "Enfrentam cancelamentos, conflitos e falhas de padronização." },
 ];
 
 export default function PainPoints() {
@@ -33,49 +27,43 @@ export default function PainPoints() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden bg-[#1A2C47]">
-      {/* Background watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <span className="text-[28rem] font-black text-white/[0.025] leading-none">G</span>
-      </div>
+    <section className="relative overflow-hidden border-b border-white/8 bg-[#0d1726]/70 py-24 md:py-32">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,151,65,0.12),transparent_24%)]" />
 
-      {/* Subtle gradient orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#D4AF37]/[0.04] blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#D4AF37]/[0.04] blur-3xl" />
-
-      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.65 }}
+          className="mb-12 max-w-3xl"
         >
-          <span className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
-            O Cenário Atual
-          </span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-light text-white">
-            Muitas empresas que trabalham com{" "}
-            <span className="font-semibold">turismo de grupo:</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
+            Cenário atual
+          </p>
+          <h2 className="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl">
+            O diagnóstico do método começa onde a maioria das agências trava.
           </h2>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-white/66 md:text-lg">
+            As dores abaixo aparecem com frequência em operações de turismo de grupos que cresceram
+            sem uma camada real de governança estratégica.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {painPoints.map((item, i) => {
+        <div className="grid gap-4 md:grid-cols-2">
+          {painPoints.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
+                key={item.text}
+                initial={{ opacity: 0, y: 18 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
-                className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] hover:border-[#D4AF37]/30 transition-all duration-300 group"
+                transition={{ duration: 0.5, delay: 0.08 + index * 0.05 }}
+                className="group flex gap-4 rounded-[26px] border border-white/10 bg-white/5 p-5 transition-colors duration-300 hover:border-[#c89741]/30 hover:bg-white/7"
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-[#D4AF37]/80 group-hover:text-[#D4AF37] transition-colors duration-300" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#c89741]/18 bg-[#c89741]/10">
+                  <Icon className="h-5 w-5 text-[#ddb97d]" />
                 </div>
-                <p className="text-white/75 font-light text-base group-hover:text-white/90 transition-colors duration-300">
-                  {item.text}
-                </p>
+                <p className="text-sm leading-7 text-white/76 md:text-base">{item.text}</p>
               </motion.div>
             );
           })}

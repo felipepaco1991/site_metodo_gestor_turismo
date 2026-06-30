@@ -1,156 +1,168 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Send } from "lucide-react";
+import { BriefcaseBusiness, GraduationCap, Send } from "lucide-react";
 
-const formContainerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { delayChildren: 0.1, staggerChildren: 0.08 },
-  },
-};
-
-const formItemVariants = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.42, ease: "easeOut" },
-  },
-};
+const experiences = [
+  "Diretoria Executiva do Grupo AirmetClub (2 anos)",
+  "Diretoria do Grupo Arbo (atualmente)",
+  "Palestrante em grandes eventos turísticos",
+  "Apoio em logística e lançamento de rotas religiosas no Brasil",
+];
 
 export default function AboutUs() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setSent(true);
   };
 
   return (
-    <section id="quem-somos" className="py-28 md:py-36 bg-white relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[#1A2C47]/[0.02] blur-3xl translate-x-1/2 translate-y-1/2" />
+    <section id="fabiana" className="relative overflow-hidden border-b border-white/8 py-24 md:py-32">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(200,151,65,0.14),transparent_22%)]" />
 
-      <div ref={ref} className="relative z-10 max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center"
-        >
-          <span className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
-            Quem Somos
-          </span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-light text-[#1A2C47]">
-            Mais de <span className="font-semibold">20 anos</span> na área turística
-          </h2>
-        </motion.div>
+      <div ref={ref} className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.65 }}
+            className="rounded-[34px] border border-white/10 bg-white/5 p-7 md:p-8"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
+              Quem conduz
+            </p>
+            <h2 className="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl">
+              Fabiana Lima
+            </h2>
+            <p className="mt-4 font-display text-2xl italic text-[#e6c38b] md:text-3xl">
+              visão executiva aplicada ao turismo de grupos
+            </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-12 text-center"
-        >
-          <p className="text-lg text-gray-500 font-light leading-relaxed max-w-3xl mx-auto">
-            Somos uma equipe com mais de 20 anos na área turística. Todos os desafios que você vier a passar ou estiver passando, já vivenciamos, e por isto; podemos garantir melhores estratégias para que você atue de maneira mais assertiva no turismo de grupos.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-16 p-10 md:p-14 rounded-3xl bg-[#1A2C47] relative overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-[#D4AF37]/10 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-white/[0.03] blur-2xl" />
-
-          <div className="relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.42 }}
-              className="text-center mb-10"
-            >
-              <p className="text-[#D4AF37] text-xl md:text-2xl font-medium">Solicite um diagnóstico.</p>
-              <p className="mt-3 text-white/70 font-light text-base">
-                Vamos te ajudar a operar turismo de grupo com lucro e segurança, sem improviso.
-              </p>
-              <p className="mt-2 text-white/90 font-medium">Não perca esta oportunidade.</p>
-            </motion.div>
-
-            {sent ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-8"
-              >
-                <div className="w-16 h-16 rounded-full bg-[#D4AF37]/20 flex items-center justify-center mx-auto mb-4">
-                  <Send className="w-7 h-7 text-[#D4AF37]" />
+            <div className="mt-10 space-y-7">
+              <div>
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="h-5 w-5 text-[#ddb97d]" />
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ddb97d]">
+                    Formação
+                  </p>
                 </div>
-                <p className="text-white text-lg font-medium">Mensagem enviada!</p>
-                <p className="text-white/60 font-light mt-2">Em breve entraremos em contato.</p>
-              </motion.div>
-            ) : (
-              <motion.form
-                onSubmit={handleSubmit}
-                initial="hidden"
-                animate={isInView ? "show" : "hidden"}
-                variants={formContainerVariants}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-              >
-                <motion.input
-                  variants={formItemVariants}
-                  required
-                  type="text"
-                  placeholder="Seu nome"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="col-span-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-[#D4AF37]/60 transition-colors text-sm"
-                />
-                <motion.input
-                  variants={formItemVariants}
-                  required
-                  type="email"
-                  placeholder="Seu e-mail"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="col-span-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-[#D4AF37]/60 transition-colors text-sm"
-                />
-                <motion.input
-                  variants={formItemVariants}
-                  type="tel"
-                  placeholder="Telefone / WhatsApp"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="col-span-1 sm:col-span-2 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-[#D4AF37]/60 transition-colors text-sm"
-                />
-                <motion.textarea
-                  variants={formItemVariants}
-                  placeholder="Conte um pouco sobre sua operação..."
-                  rows={4}
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="col-span-1 sm:col-span-2 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-[#D4AF37]/60 transition-colors text-sm resize-none"
-                />
-                <motion.div variants={formItemVariants} className="col-span-1 sm:col-span-2 flex justify-center mt-2">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center gap-3 px-10 py-4 bg-[#D4AF37] text-[#1A2C47] font-semibold rounded-full hover:bg-[#C9A961] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 group"
-                  >
-                    <span>Solicitar Diagnóstico</span>
-                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                <p className="mt-4 text-sm leading-7 text-white/66 md:text-base">
+                  MBA em Gestão de Negócios, Controladoria, Finanças Corporativas e Inteligência
+                  Artificial.
+                </p>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-3">
+                  <BriefcaseBusiness className="h-5 w-5 text-[#ddb97d]" />
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ddb97d]">
+                    Experiência
+                  </p>
+                </div>
+                <div className="mt-4 space-y-3">
+                  {experiences.map((item) => (
+                    <div key={item} className="flex gap-3">
+                      <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89741]" />
+                      <p className="text-sm leading-7 text-white/66 md:text-base">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.65, delay: 0.12 }}
+            className="overflow-hidden rounded-[34px] border border-white/10 bg-[#0d1726]/84"
+          >
+            <div className="relative border-b border-white/10 px-7 py-8 md:px-8">
+              <div
+                className="absolute inset-0 opacity-18"
+                style={{ backgroundImage: "url('/assets/AdobeStock_274407399.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(140deg,rgba(9,17,31,0.92),rgba(18,28,43,0.86))]" />
+              <div className="relative z-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
+                  Solicitar diagnóstico
+                </p>
+                <h3 className="mt-4 font-heading text-3xl leading-tight text-white md:text-4xl">
+                  Comece pela leitura certa da sua operação.
+                </h3>
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-white/66 md:text-base">
+                  Se a sua agência precisa de margem, segurança e previsibilidade no turismo de
+                  grupos, esse é o primeiro passo para entender onde atuar.
+                </p>
+              </div>
+            </div>
+
+            <div className="px-7 py-8 md:px-8">
+              {sent ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="rounded-[28px] border border-[#c89741]/18 bg-[#111b2b] px-6 py-10 text-center"
+                >
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#c89741]/14">
+                    <Send className="h-6 w-6 text-[#ddb97d]" />
+                  </div>
+                  <p className="mt-5 font-display text-3xl text-white">Mensagem registrada</p>
+                  <p className="mt-3 text-sm leading-7 text-white/64">
+                    O próximo contato pode ser usado para aprofundar diagnóstico, escopo e
+                    aderência ao programa.
+                  </p>
                 </motion.div>
-              </motion.form>
-            )}
-          </div>
-        </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
+                  <input
+                    required
+                    type="text"
+                    placeholder="Seu nome"
+                    value={form.name}
+                    onChange={(event) => setForm({ ...form, name: event.target.value })}
+                    className="rounded-2xl border border-white/12 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/35 focus:border-[#c89741]/40 focus:outline-none"
+                  />
+                  <input
+                    required
+                    type="email"
+                    placeholder="Seu e-mail"
+                    value={form.email}
+                    onChange={(event) => setForm({ ...form, email: event.target.value })}
+                    className="rounded-2xl border border-white/12 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/35 focus:border-[#c89741]/40 focus:outline-none"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Telefone ou WhatsApp"
+                    value={form.phone}
+                    onChange={(event) => setForm({ ...form, phone: event.target.value })}
+                    className="rounded-2xl border border-white/12 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/35 focus:border-[#c89741]/40 focus:outline-none sm:col-span-2"
+                  />
+                  <textarea
+                    rows={5}
+                    placeholder="Conte um pouco sobre sua operação e o momento atual da agência."
+                    value={form.message}
+                    onChange={(event) => setForm({ ...form, message: event.target.value })}
+                    className="rounded-2xl border border-white/12 bg-white/5 px-4 py-3.5 text-sm leading-7 text-white placeholder:text-white/35 focus:border-[#c89741]/40 focus:outline-none sm:col-span-2"
+                  />
+                  <div className="sm:col-span-2">
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-3 rounded-full bg-[#c89741] px-7 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#101a29] transition-colors duration-300 hover:bg-[#ddb36d]"
+                    >
+                      Solicitar diagnóstico estratégico
+                      <Send className="h-4 w-4" />
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

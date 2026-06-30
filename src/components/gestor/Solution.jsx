@@ -1,13 +1,35 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Target, Calculator, ClipboardList, Shield, Heart } from "lucide-react";
+import { Briefcase, FileText, Map, ShieldCheck } from "lucide-react";
 
-const deliverables = [
-  { icon: Target, title: "Modelo assertivo de negócio de grupos" },
-  { icon: Calculator, title: "Precificação correta" },
-  { icon: ClipboardList, title: "Planejamento e operação assertiva" },
-  { icon: Shield, title: "Gestão de risco e contratos" },
-  { icon: Heart, title: "Experiência do cliente no grupo" },
+const pillars = [
+  {
+    icon: Briefcase,
+    title: "Estratégia e posicionamento",
+    items: [
+      "Diagnóstico do negócio e travas de crescimento",
+      "Conhecimento de mercado e diferenciação",
+      "Posicionamento de marca e cultura organizacional",
+    ],
+  },
+  {
+    icon: FileText,
+    title: "Estruturação e documentação",
+    items: [
+      "Validação de empresa, cadastros e operação",
+      "Contratos, fichas, pagamentos e seguros",
+      "Planilhas, sistemas e fluxos internos do método",
+    ],
+  },
+  {
+    icon: Map,
+    title: "Operação, margem e plano",
+    items: [
+      "Precificação de grupos e melhora de margens",
+      "Roteiros, logística e acompanhamento operacional",
+      "Entrega do plano de negócios consolidado",
+    ],
+  },
 ];
 
 export default function Solution() {
@@ -15,81 +37,81 @@ export default function Solution() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="solucao" className="py-28 md:py-36 bg-[#1A2C47] relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/[0.03] blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#D4AF37]/[0.05] blur-3xl" />
-      
-      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-6"
-        >
-          <span className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
-            A Solução
-          </span>
-        </motion.div>
+    <section id="metodo" className="relative overflow-hidden border-b border-white/8 py-24 md:py-32">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(200,151,65,0.16),transparent_22%)]" />
 
+      <div ref={ref} className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="max-w-3xl mx-auto text-center"
+          transition={{ duration: 0.65 }}
+          className="mx-auto max-w-4xl text-center"
         >
-          <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
-            O Método <span className="font-semibold text-white">G.E.S.T.O.R.®</span> é um projeto de consultoria estratégica anual que organiza o turismo de grupos a partir de{" "}
-            <span className="text-[#D4AF37]">governança, gestão e tomada de decisão estruturada.</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
+            O método
+          </p>
+          <h2 className="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl lg:text-6xl">
+            Consultoria estratégica anual.
+            <span className="mt-3 block font-display text-2xl italic text-[#e6c38b] md:text-3xl">
+              Não é gestão do negócio. Não é execução operacional.
+            </span>
+          </h2>
+          <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-white/68 md:text-lg">
+            O G.E.S.T.O.R.® foi desenhado para orientar decisões, estruturar processos, elevar a
+            maturidade da operação e consolidar um plano de negócio sólido para o turismo de grupos.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="mt-10 flex flex-wrap justify-center gap-6 text-white/50 text-base font-light"
-        >
-          <span>Não é mentoria.</span>
-          <span className="hidden md:block">·</span>
-          <span>Não é execução.</span>
-          <span className="hidden md:block">·</span>
-          <span className="text-white/80 font-medium">É estrutura para crescer com segurança.</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 mb-10 text-center"
-        >
-          <div className="w-16 h-[2px] bg-[#D4AF37] mx-auto mb-6" />
-          <p className="text-lg text-white/70 font-light">
-            É construir através do Método <span className="text-white font-medium">G.E.S.T.O.R.</span>
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {deliverables.map((item, i) => {
-            const Icon = item.icon;
+        <div className="mt-14 grid gap-5 lg:grid-cols-3">
+          {pillars.map((pillar, index) => {
+            const Icon = pillar.icon;
             return (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
+                key={pillar.title}
+                initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + i * 0.08 }}
-                className="p-6 rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm text-center hover:bg-white/[0.1] transition-all duration-300 group"
+                transition={{ duration: 0.55, delay: 0.1 + index * 0.08 }}
+                className="rounded-[30px] border border-white/10 bg-white/5 p-7 backdrop-blur-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/[0.15] flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D4AF37]/[0.25] transition-colors">
-                  <Icon className="w-5 h-5 text-[#D4AF37]" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c89741]/22 bg-[#c89741]/10">
+                  <Icon className="h-5 w-5 text-[#ddb97d]" />
                 </div>
-                <p className="text-white/80 text-sm font-light leading-relaxed">
-                  {item.title}
-                </p>
+                <h3 className="mt-6 font-display text-3xl text-white">{pillar.title}</h3>
+                <ul className="mt-5 space-y-3 text-sm leading-7 text-white/70 md:text-base">
+                  {pillar.items.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c89741]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             );
           })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, delay: 0.34 }}
+          className="mt-10 rounded-[28px] border border-[#c89741]/18 bg-[#0d1726]/72 p-6 md:p-7"
+        >
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#c89741]/12">
+              <ShieldCheck className="h-5 w-5 text-[#ddb97d]" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ddb97d]">
+                Escopo do programa
+              </p>
+              <p className="mt-3 max-w-4xl text-sm leading-7 text-white/66 md:text-base">
+                O foco está em treinamentos, direcionamento estratégico, aulas, orientações e
+                modelos proprietários de processo, documentos, planilhas e sistemas do método.
+                Demandas fora desse escopo exigem avaliação específica.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

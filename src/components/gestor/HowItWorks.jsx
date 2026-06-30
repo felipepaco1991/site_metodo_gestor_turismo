@@ -1,15 +1,33 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Video, Headphones, Layers, Calendar, FileText, Lock } from "lucide-react";
-import GoldenCircles from "./GoldenCircles";
+import { CalendarClock, FileStack, MessageCircleMore, Presentation, TimerReset } from "lucide-react";
 
-const features = [
-  { icon: Video, title: "Encontro estratégico semanal", desc: "60 minutos" },
-  { icon: Headphones, title: "Suporte tático pontual", desc: "e limitado" },
-  { icon: Layers, title: "Projeto estruturado", desc: "em 4 fases" },
-  { icon: Calendar, title: "Acompanhamento", desc: "por 12 meses" },
-  { icon: FileText, title: "Entrega de padrões", desc: "planilhas e modelos" },
-  { icon: Lock, title: "Vagas", desc: "limitadas" },
+const supportItems = [
+  {
+    icon: Presentation,
+    title: "1 hora semanal",
+    desc: "Mentoria estratégica exclusiva para ajustes de rota, análise de desafios e direcionamento executivo.",
+  },
+  {
+    icon: MessageCircleMore,
+    title: "Suporte tático via WhatsApp",
+    desc: "Canal direto para dúvidas pontuais e decisões que exigem resposta mais rápida no meio da operação.",
+  },
+  {
+    icon: CalendarClock,
+    title: "Acompanhamento mensal e anual",
+    desc: "Leitura contínua da evolução do negócio para consolidar resultados ao longo dos 12 meses.",
+  },
+  {
+    icon: FileStack,
+    title: "Modelos e materiais proprietários",
+    desc: "Planilhas, documentos, fluxos e referências que aceleram a profissionalização da agência.",
+  },
+  {
+    icon: TimerReset,
+    title: "Ritmo mínimo de 12 meses",
+    desc: "Tempo de contrato pensado para sair do improviso e alcançar maturidade estratégica real.",
+  },
 ];
 
 export default function HowItWorks() {
@@ -17,49 +35,44 @@ export default function HowItWorks() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section
-      id="como-funciona"
-      className="pt-28 pb-12 md:pt-36 md:pb-16 bg-white relative overflow-hidden"
-    >
-      <GoldenCircles />
-      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-6">
+    <section className="relative overflow-hidden border-b border-white/8 bg-[#0d1726]/68 py-24 md:py-32">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.06),transparent_22%)]" />
+
+      <div ref={ref} className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.65 }}
+          className="mb-12 max-w-3xl"
         >
-          <span className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
-            Estrutura
-          </span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-light text-[#1A2C47]">
-            Como <span className="font-semibold">Funciona</span>
+          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
+            Acompanhamento
+          </p>
+          <h2 className="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl">
+            Suporte de elite em cada etapa da jornada.
           </h2>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-white/66 md:text-lg">
+            O programa combina cadência semanal, suporte tático e evolução progressiva para
+            transformar a agência em uma operação menos vulnerável e mais estratégica.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((item, i) => {
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+          {supportItems.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 25 }}
+                key={item.title}
+                initial={{ opacity: 0, y: 18 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-                className="relative p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/[0.04] transition-all duration-500 group"
+                transition={{ duration: 0.5, delay: 0.08 + index * 0.06 }}
+                className="rounded-[26px] border border-white/10 bg-white/5 p-6"
               >
-                <div className="absolute top-6 right-6 text-5xl font-extralight text-gray-100 group-hover:text-[#D4AF37]/10 transition-colors duration-300">
-                  {String(i + 1).padStart(2, "0")}
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c89741]/18 bg-[#c89741]/10">
+                  <Icon className="h-5 w-5 text-[#ddb97d]" />
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-[#1A2C47]/[0.06] flex items-center justify-center mb-5 group-hover:bg-[#D4AF37]/[0.08] transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-[#1A2C47]/70 group-hover:text-[#D4AF37] transition-colors duration-300" />
-                </div>
-                <h3 className="text-[#1A2C47] font-medium text-lg mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400 font-light text-sm">
-                  {item.desc}
-                </p>
+                <h3 className="mt-5 font-display text-3xl text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/66">{item.desc}</p>
               </motion.div>
             );
           })}
