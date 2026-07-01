@@ -1,161 +1,159 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BadgeCheck, BriefcaseBusiness, CalendarDays } from "lucide-react";
-
-const metrics = [
-  { value: "12 meses", label: "Programa anual de consultoria" },
-  { value: "06 fases", label: "Jornada estruturada de evolução" },
-  { value: "1h/semana", label: "Mentoria estratégica exclusiva" },
-];
+import { Sparkles, ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section
-      id="topo"
-      className="relative flex min-h-screen items-center overflow-hidden border-b border-white/8 pt-24"
-    >
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#1A2C47]">
       <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: "url('/assets/AdobeStock_550821201.jpg')" }}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 right-20 w-96 h-96 rounded-full bg-gradient-to-br from-[#D4AF37]/20 to-[#C9A961]/10 blur-3xl"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(9,17,31,0.96),rgba(9,17,31,0.72),rgba(18,28,43,0.92))]" />
-        <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_top_right,rgba(200,151,65,0.22),transparent_26%)]" />
-        <div className="absolute bottom-0 left-0 h-full w-full bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_24%)]" />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#D4AF37]/10 to-transparent blur-3xl"
+        />
+
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 right-0 w-[600px] h-[600px] border border-[#D4AF37]/5 rounded-full -translate-y-1/2 translate-x-1/3"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 right-0 w-[700px] h-[700px] border border-[#D4AF37]/3 rounded-full -translate-y-1/2 translate-x-1/3"
+        />
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#c89741]/30 bg-[#c89741]/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#f2d8b7]"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 mb-8"
           >
-            <BadgeCheck className="h-4 w-4" />
-            Consultoria estratégica anual para turismo de grupos
+            <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+            <span className="text-[#D4AF37] text-xs font-medium tracking-[0.2em] uppercase">
+              O QUE É O MÉTODO G.E.S.T.O.R.®
+            </span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, x: -28 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.08 }}
-            className="max-w-4xl font-heading text-5xl leading-[0.96] text-white md:text-6xl lg:text-7xl"
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight"
           >
-            Método G.E.S.T.O.R.<span className="text-[#c89741]">®</span>
-            <span className="mt-4 block font-display text-2xl font-medium italic text-[#ecd7b7] md:text-3xl lg:text-4xl">
-              Governança Estratégica em Serviços de Turismo de Grupos
-            </span>
+            <span className="font-semibold text-[#D4AF37]">G.E.S.T.O.R.</span>
+            <span className="text-[#D4AF37] text-3xl">®</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, x: -28 }}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.18 }}
-            className="mt-8 max-w-2xl text-base leading-8 text-white/72 md:text-lg"
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="w-16 h-[2px] bg-[#D4AF37] mb-6"
+          />
+
+          <motion.p
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="text-lg md:text-xl text-gray-300 font-light leading-relaxed mb-4"
           >
-            Uma estrutura de alto nível para organizar posicionamento, documentação, precificação,
-            processos, riscos e plano de negócios com foco em margem, previsibilidade e escala.
+            Governança Estratégica em Serviços de Turismo de Grupos
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="text-base text-gray-400 font-light leading-relaxed mb-10 max-w-lg"
+          >
+            Consultoria estratégica anual que transforma sua empresa, organiza sua operação e garante previsibilidade, segurança e margem saudável no turismo de grupos.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.28 }}
-            className="mt-10 flex flex-col gap-4 sm:flex-row"
+            transition={{ duration: 0.7, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-4"
           >
             <a
               href="#investimento"
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#c89741] px-7 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#101a29] transition-all duration-300 hover:bg-[#ddb36d]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#D4AF37] text-[#1A2C47] text-sm font-semibold tracking-wide rounded-lg hover:bg-[#C9A961] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 group"
             >
-              Ver investimento
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              Agendar Consultoria
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#fases"
-              className="inline-flex items-center justify-center gap-3 rounded-full border border-white/14 bg-white/4 px-7 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white/84 transition-all duration-300 hover:border-[#c89741]/40 hover:bg-white/8"
+              href="#solucao"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 border-2 border-white/20 text-white text-sm font-medium tracking-wide rounded-lg hover:bg-white/5 transition-all duration-300"
             >
-              Conhecer as 6 fases
+              A Estrutura por Trás do Método
             </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.36 }}
-            className="mt-14 grid gap-4 md:grid-cols-3"
-          >
-            {metrics.map((metric) => (
-              <div
-                key={metric.value}
-                className="rounded-[26px] border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
-              >
-                <p className="font-display text-2xl text-[#e8c48a] md:text-3xl">{metric.value}</p>
-                <p className="mt-2 text-sm leading-6 text-white/60">{metric.label}</p>
-              </div>
-            ))}
           </motion.div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.75, delay: 0.18 }}
-          className="relative"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative hidden lg:flex items-center justify-center"
         >
-          <div className="absolute -left-8 top-8 hidden h-28 w-28 rounded-full border border-[#c89741]/18 lg:block" />
-          <div className="absolute -right-6 bottom-10 hidden h-40 w-40 rounded-full bg-[#c89741]/10 blur-3xl lg:block" />
+          <div className="relative w-full max-w-lg aspect-[4/3] rounded-3xl bg-gradient-to-br from-[#D4AF37]/10 to-transparent border border-[#D4AF37]/20 backdrop-blur-sm overflow-hidden p-8">
+            <motion.div
+              animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-8 right-8 w-24 h-24 rounded-2xl bg-gradient-to-br from-[#D4AF37]/30 to-[#D4AF37]/10 backdrop-blur-sm border border-[#D4AF37]/30"
+            />
+            <motion.div
+              animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-12 left-8 w-32 h-32 rounded-2xl bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-white/10"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#D4AF37]/10 to-transparent blur-2xl"
+            />
 
-          <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#111b2b]/72 p-6 shadow-[0_32px_100px_rgba(0,0,0,0.28)] backdrop-blur-md">
-            <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.06),transparent_38%)]" />
-            <div className="relative space-y-5">
-              <div className="flex items-center justify-between rounded-[26px] border border-white/10 bg-white/4 px-5 py-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6ae73]">
-                    Posicionamento
-                  </p>
-                  <p className="mt-2 font-display text-2xl text-white">Foco em ROI e escala</p>
-                </div>
-                <BriefcaseBusiness className="h-9 w-9 text-[#c89741]" />
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[24px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6ae73]">
-                    Cobertura
-                  </p>
-                  <p className="mt-3 text-lg leading-7 text-white/86">
-                    Diagnóstico do negócio, travas de crescimento, estrutura empresarial e branding.
-                  </p>
-                </div>
-                <div className="rounded-[24px] border border-white/10 bg-[rgba(255,255,255,0.04)] p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d6ae73]">
-                    Entrega
-                  </p>
-                  <p className="mt-3 text-lg leading-7 text-white/86">
-                    Treinamentos, modelos proprietários, processos, fluxogramas e plano de negócios.
-                  </p>
-                </div>
-              </div>
-
-              <div className="rounded-[28px] border border-[#c89741]/18 bg-[#0d1726] p-6">
-                <div className="flex items-center gap-3 text-[#f3d8b8]">
-                  <CalendarDays className="h-5 w-5" />
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em]">
-                    Jornada estratégica de 12 meses
-                  </p>
-                </div>
-                <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-white/66">
-                  <div className="rounded-2xl border border-white/8 bg-white/4 p-4">Mercado e mindsets</div>
-                  <div className="rounded-2xl border border-white/8 bg-white/4 p-4">Documentação e sistemas</div>
-                  <div className="rounded-2xl border border-white/8 bg-white/4 p-4">Operação e finanças</div>
-                  <div className="rounded-2xl border border-white/8 bg-white/4 p-4">Plano de negócios</div>
-                </div>
-              </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#C9A961] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/50">
+              <span className="text-[#1A2C47] text-5xl font-bold">G</span>
             </div>
           </div>
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="w-6 h-10 border-2 border-white/20 rounded-full flex items-start justify-center p-2"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="w-1 h-2 bg-[#D4AF37] rounded-full"
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

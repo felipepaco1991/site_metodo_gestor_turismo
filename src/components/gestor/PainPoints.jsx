@@ -1,25 +1,23 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import {
-  AlertTriangle,
-  Calculator,
-  FileWarning,
-  Link2,
-  Scale,
-  Shuffle,
-  TrendingDown,
-  Users,
-} from "lucide-react";
+import { Clock3, MessageCircle, LineChart } from "lucide-react";
 
 const painPoints = [
-  { icon: TrendingDown, text: "Vendem bem, mas não enxergam resultado financeiro consistente." },
-  { icon: Users, text: "Dependem demais de pessoas e pouco de processos próprios." },
-  { icon: Shuffle, text: "Tomam decisões no improviso e reagem tarde aos problemas." },
-  { icon: AlertTriangle, text: "Operam com margens baixas e riscos ocultos." },
-  { icon: FileWarning, text: "Carregam fragilidade documental e insegurança jurídica." },
-  { icon: Calculator, text: "Precificam grupos sem margem de segurança real." },
-  { icon: Link2, text: "Dependem em excesso de terceiros, operadoras e atalhos operacionais." },
-  { icon: Scale, text: "Enfrentam cancelamentos, conflitos e falhas de padronização." },
+  {
+    icon: Clock3,
+    text: "1 hora semanal",
+    desc: "Mentoria exclusiva para ajuste de rota, análise de desafios e direcionamento estratégico personalizado.",
+  },
+  {
+    icon: MessageCircle,
+    text: "Suporte tático via WhatsApp",
+    desc: "Acesso direto para resolução de dúvidas pontuais e suporte em tomadas de decisão imediatas.",
+  },
+  {
+    icon: LineChart,
+    text: "Acompanhamento mensal e anual",
+    desc: "Monitoramento contínuo dos indicadores de sucesso para garantir a consolidação dos resultados.",
+  },
 ];
 
 export default function PainPoints() {
@@ -27,47 +25,69 @@ export default function PainPoints() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative overflow-hidden border-b border-white/8 bg-[#0d1726]/70 py-24 md:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,151,65,0.12),transparent_24%)]" />
+    <section className="py-16 md:py-24 relative overflow-hidden bg-[#1A2C47]">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <span className="text-[28rem] font-black text-white/[0.025] leading-none">G</span>
+      </div>
 
-      <div ref={ref} className="relative z-10 mx-auto max-w-6xl px-6 md:px-8">
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#D4AF37]/[0.04] blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#D4AF37]/[0.04] blur-3xl" />
+
+      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65 }}
-          className="mb-12 max-w-3xl"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
-            Cenário atual
-          </p>
-          <h2 className="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl">
-            O diagnóstico do método começa onde a maioria das agências trava.
+          <span className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
+            ACOMPANHAMENTO
+          </span>
+          <h2 className="mt-4 text-3xl md:text-4xl font-light text-white">
+            Suporte de Elite em Cada Etapa
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-white/66 md:text-lg">
-            As dores abaixo aparecem com frequência em operações de turismo de grupos que cresceram
-            sem uma camada real de governança estratégica.
-          </p>
         </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {painPoints.map((item, index) => {
+        <div className="grid grid-cols-1 gap-3">
+          {painPoints.map((item, i) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={item.text}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.08 + index * 0.05 }}
-                className="group flex gap-4 rounded-[26px] border border-white/10 bg-white/5 p-5 transition-colors duration-300 hover:border-[#c89741]/30 hover:bg-white/7"
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:bg-white/[0.09] hover:border-[#D4AF37]/30 transition-all duration-300 group"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#c89741]/18 bg-[#c89741]/10">
-                  <Icon className="h-5 w-5 text-[#ddb97d]" />
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
+                  <Icon className="w-5 h-5 text-[#D4AF37]/80 group-hover:text-[#D4AF37] transition-colors duration-300" />
                 </div>
-                <p className="text-sm leading-7 text-white/76 md:text-base">{item.text}</p>
+                <div>
+                  <p className="text-white/90 font-medium text-base group-hover:text-white transition-colors duration-300">
+                    {item.text}
+                  </p>
+                  <p className="text-white/65 font-light text-sm mt-1 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mt-10 text-center"
+        >
+          <p className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
+            INTENSIDADE DO SUPORTE
+          </p>
+          <p className="mt-4 text-white/60 font-light text-base md:text-lg">
+            Anual · Mensal · Semanal
+          </p>
+        </motion.div>
       </div>
     </section>
   );

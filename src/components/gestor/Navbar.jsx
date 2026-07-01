@@ -1,32 +1,66 @@
-import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Início", href: "#topo" },
-  { label: "Diagnóstico", href: "#diagnostico" },
-  { label: "Método", href: "#metodo" },
-  { label: "Fases", href: "#fases" },
-  { label: "Bônus", href: "#bonus" },
-  { label: "Fabiana", href: "#fabiana" },
-  { label: "Investimento", href: "#investimento" },
+  { label: "O QUE É O MÉTODO G.E.S.T.O.R.®", href: "#programa-anual" },
+  { label: "PARA QUEM É", href: "#para-quem" },
+  { label: "O QUE VOCÊ RECEBE", href: "#o-que-voce-recebe" },
+  { label: "QUEM SOMOS", href: "#quem-somos" },
+  { label: "INVESTIMENTO", href: "#investimento" },
 ];
+
+const desktopNavVariants = {
+  hidden: { opacity: 0, y: -12 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.2, staggerChildren: 0.08 },
+  },
+};
+
+const desktopItemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: "easeOut" },
+  },
+};
+
+const mobileMenuVariants = {
+  hidden: { opacity: 0, y: -20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.25, staggerChildren: 0.06, delayChildren: 0.04 },
+  },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
+};
+
+const mobileItemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: "easeOut" } },
+  exit: { opacity: 0, y: -6, transition: { duration: 0.18 } },
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 32);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (event, href) => {
-    event.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const el = document.querySelector(href);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setMobileOpen(false);
   };
@@ -36,52 +70,57 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-white/10 bg-[#0d1728]/90 shadow-[0_12px_48px_rgba(0,0,0,0.2)] backdrop-blur-xl"
-            : "bg-transparent"
+            ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100"
+            : "bg-[#1A2C47]/80 backdrop-blur-md border-b border-white/5"
         }`}
       >
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:h-24 md:px-8">
-          <a
-            href="#topo"
-            onClick={(event) => handleNavClick(event, "#topo")}
-            className="flex h-16 items-center overflow-visible md:h-20"
+        <div className="max-w-6xl mx-auto px-8 h-20 md:h-24 flex items-center justify-between">
+          <motion.a
+            href="#"
+            onClick={(e) => handleNavClick(e, "#programa-anual")}
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
+            className="flex items-center"
           >
             <img
-              src="/logo-fabiana.png"
+              src="/fabiana-lima-logo.png"
               alt="Fabiana Lima"
-              className="relative top-[2px] block h-12 w-auto object-contain md:top-[4px] md:h-16"
+              className="h-12 w-auto object-contain md:h-14"
             />
-          </a>
+          </motion.a>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={desktopNavVariants}
+            className="hidden md:flex items-center gap-6"
+          >
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.label}
                 href={link.href}
-                onClick={(event) => handleNavClick(event, link.href)}
-                className="text-sm font-medium tracking-[0.18em] text-white/72 transition-colors duration-300 hover:text-[#e2b66a]"
+                onClick={(e) => handleNavClick(e, link.href)}
+                variants={desktopItemVariants}
+                className={`text-sm font-light transition-colors duration-300 hover:text-[#D4AF37] ${
+                  scrolled ? "text-gray-600" : "text-gray-200"
+                }`}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
-            <a
-              href="#fabiana"
-              onClick={(event) => handleNavClick(event, "#fabiana")}
-              className="rounded-full border border-[#c89741]/40 bg-[#c89741]/12 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.22em] text-[#f4dcc0] transition-all duration-300 hover:border-[#c89741] hover:bg-[#c89741]/18"
-            >
-              Solicitar diagnóstico
-            </a>
-          </div>
+          </motion.div>
 
           <button
-            onClick={() => setMobileOpen((open) => !open)}
-            className="rounded-full border border-white/10 bg-white/5 p-2.5 text-white md:hidden"
-            aria-label="Abrir menu"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`md:hidden p-2 transition-colors duration-300 ${
+              scrolled ? "text-[#1A2C47]" : "text-white"
+            }`}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </motion.nav>
@@ -89,22 +128,23 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -18 }}
-            transition={{ duration: 0.24 }}
-            className="fixed inset-0 z-40 bg-[#09111f]/96 px-6 pt-24 backdrop-blur-xl md:hidden"
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            variants={mobileMenuVariants}
+            className="fixed inset-0 z-40 bg-white pt-20"
           >
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col items-center gap-8 pt-12 px-6">
               {navLinks.map((link) => (
-                <a
+                <motion.a
                   key={link.label}
                   href={link.href}
-                  onClick={(event) => handleNavClick(event, link.href)}
-                  className="border-b border-white/8 pb-4 font-heading text-2xl text-white/90"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  variants={mobileItemVariants}
+                  className="text-xl font-light text-[#1A2C47] hover:text-[#D4AF37] transition-colors text-center"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>

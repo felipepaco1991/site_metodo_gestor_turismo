@@ -12,7 +12,7 @@ import Footer from "@/components/gestor/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <HeroSection />
       <ProblemIntro />

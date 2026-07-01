@@ -1,74 +1,118 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+
+const bonuses = [
+  {
+    tag: "BÔNUS 01",
+    title: "Plano de Negócios Completo",
+    desc: "Desenvolvimento de um roadmap estratégico personalizado para guiar o crescimento da sua agência.",
+    items: [],
+  },
+  {
+    tag: "BÔNUS 02",
+    title: "Treinamento / Palestra",
+    desc: "",
+    items: ["Gestão e Liderança", "Gestão de Pessoas", "Gestão de Negócios Turísticos"],
+  },
+  {
+    tag: "BÔNUS 03",
+    title: "Diagnóstico do Negócio e Travas de Crescimento",
+    desc: "Identificação profunda de gargalos operacionais e mentais que impedem a escala do seu negócio.",
+    items: [],
+  },
+];
 
 export default function Footer() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
-    <footer id="investimento" className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,151,65,0.16),transparent_22%)]" />
-
-      <div ref={ref} className="relative z-10 mx-auto max-w-6xl px-6 pb-12 pt-24 md:px-8 md:pt-28">
+    <footer className="py-16 bg-gray-50 border-t border-gray-100">
+      <div ref={ref} className="max-w-5xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65 }}
-          className="rounded-[36px] border border-white/10 bg-[#0c1523]/88 p-8 md:p-12"
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="text-center mb-10"
         >
-          <div className="grid gap-10 lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#ddb97d]">
-                Investimento
-              </p>
-              <h2 className="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl">
-                Invista no futuro estratégico da sua agência.
-              </h2>
-              <p className="mt-5 max-w-2xl font-display text-2xl italic text-white/68 md:text-3xl">
-                “A transformação da sua agência começa com uma decisão estratégica de valor.”
-              </p>
-              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/64 md:text-base">
-                Programa com foco em retorno sobre investimento, maturidade operacional e escala
-                sustentável no turismo de grupos.
-              </p>
-            </div>
-
-            <div className="rounded-[32px] border border-[#c89741]/22 bg-white/5 p-7 md:p-8">
-              <p className="text-sm uppercase tracking-[0.22em] text-white/48">Investimento de</p>
-              <div className="mt-4 flex items-end gap-3">
-                <span className="font-display text-5xl text-[#e8c48a] md:text-7xl">R$ 6.780,00</span>
-                <span className="pb-2 text-lg text-white/44">/mês</span>
-              </div>
-              <div className="my-6 h-px w-full bg-white/10" />
-              <p className="text-sm leading-7 text-white/60">
-                Tempo mínimo de contrato: <span className="font-semibold text-[#ddb97d]">12 meses</span>
-              </p>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ddb97d]">
-                Foco em ROI, posicionamento e escala
-              </p>
-              <a
-                href="#fabiana"
-                className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#c89741] px-7 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#101a29] transition-colors duration-300 hover:bg-[#ddb36d]"
-              >
-                Solicitar diagnóstico
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          <p className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
+            BÔNUS
+          </p>
+          <p className="mt-4 text-2xl md:text-3xl text-[#1A2C47] font-light">
+            Vantagens Exclusivas de Alto Impacto
+          </p>
         </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {bonuses.map((bonus, index) => (
+            <motion.div
+              key={bonus.tag}
+              initial={{ opacity: 0, y: 14 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: 0.08 * index, ease: "easeOut" }}
+              className="rounded-2xl bg-white border border-gray-100 p-6"
+            >
+              <p className="text-[#D4AF37] text-xs font-medium tracking-[0.2em] uppercase mb-3">
+                {bonus.tag}
+              </p>
+              <p className="text-[#1A2C47] text-lg font-medium leading-snug">
+                {bonus.title}
+              </p>
+
+              {bonus.desc ? (
+                <p className="mt-3 text-sm text-gray-500 font-light leading-relaxed">
+                  {bonus.desc}
+                </p>
+              ) : null}
+
+              {bonus.items.length > 0 ? (
+                <div className="mt-3 space-y-2">
+                  {bonus.items.map((item) => (
+                    <p key={item} className="text-sm text-gray-500 font-light leading-relaxed">
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              ) : null}
+            </motion.div>
+          ))}
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.45, delay: 0.12 }}
-          className="mt-10 flex flex-col gap-3 border-t border-white/8 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left"
+          transition={{ duration: 0.45, delay: 0.2, ease: "easeOut" }}
+          className="mt-14 rounded-[2rem] bg-[#1A2C47] px-8 py-10 text-center shadow-[0_24px_80px_rgba(26,44,71,0.12)]"
         >
-          <p className="text-sm tracking-wide text-white/42">
-            Método G.E.S.T.O.R.® · Governança Estratégica em Serviços de Turismo de Grupos
+          <p className="text-[#D4AF37] text-sm font-medium tracking-[0.25em] uppercase">
+            Método G.E.S.T.O.R.®
           </p>
-          <p className="text-xs text-white/32">
-            © {new Date().getFullYear()} metodogestorturismo.com.br · Todos os direitos reservados.
+          <p className="mt-4 text-white/75 font-light text-base md:text-lg">
+            Governança Estratégica em Serviços de Turismo de Grupos
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row md:gap-8">
+            <a
+              href="https://www.instagram.com/metodogestorturismo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-[#D4AF37]/30 px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.metodogestorturismo.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-white/5 hover:text-[#D4AF37]"
+            >
+              www.metodogestorturismo.com.br
+            </a>
+          </div>
+
+          <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+          <p className="mt-6 text-xs text-white/40">
+            © {new Date().getFullYear()} Método G.E.S.T.O.R.®
           </p>
         </motion.div>
       </div>
